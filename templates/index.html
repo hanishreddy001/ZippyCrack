@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZippyCrack - ZIP Password Cracker</title>
+    <style>
+        body { 
+            background-color: #121212; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0;
+        }
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffcc00;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #ffcc00;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .card {
+            background: #1e1e1e;
+            padding: 20px 30px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .card h2 {
+            color: #ffcc00;
+        }
+        input[type=file] {
+            background: #2a2a2a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        input[type=submit] {
+            background: #ffcc00;
+            color: black;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background: #e6b800;
+        }
+        .result-box {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        ul {
+            margin: 5px 0 0 15px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔓 ZippyCrack</h1>
+    <p>Simulated ZIP Password Cracker</p>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Upload Your ZIP File</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="zipfile" required>
+            <input type="submit" value="Crack Password">
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if password %}
+            <div class="result-box">
+                <p><strong>Password Found:</strong> {{ password }}</p>
+                <p><strong>Password Strength:</strong> {{ strength }}</p>
+                <p><strong>Entropy:</strong> {{ entropy }} bits</p>
+                <p><strong>Time Taken:</strong> {{ time_taken }} seconds</p>
+                <p><strong>Suggestions:</strong></p>
+                <ul>
+                    {% for s in suggestions %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+                <p><strong>ZIP Contents:</strong></p>
+                <ul>
+                    {% for item in contents %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</main>
+
+</body>
+</html>
