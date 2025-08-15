@@ -1,5 +1,5 @@
 import zipfile
-
+#file
 def crack(zipfilename, wordlist, verbose=False):
     with zipfile.ZipFile(zipfilename) as zf:
         with open(wordlist, 'r', encoding='utf-8') as f:
